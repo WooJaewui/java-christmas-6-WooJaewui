@@ -1,5 +1,7 @@
 package christmas.domain.food;
 
+import christmas.domain.Bill;
+
 public enum Appetizer implements Food {
     MUSHROOM_SOUP(6000),
     TAPAS(5500),
@@ -12,7 +14,7 @@ public enum Appetizer implements Food {
     }
 
     @Override
-    public int calculatePrice() {
+    public int calculatePrice(Bill bill) {
         return price;
     }
 }
