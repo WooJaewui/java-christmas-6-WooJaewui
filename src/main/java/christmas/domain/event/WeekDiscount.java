@@ -1,4 +1,4 @@
-package christmas.domain.price;
+package christmas.domain.event;
 
 public interface WeekDiscount {
     int FRIDAY_MARK = 1;

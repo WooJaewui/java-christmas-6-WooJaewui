@@ -1,18 +1,18 @@
 package christmas.domain;
 
-import christmas.domain.price.*;
+import christmas.domain.event.*;
 import christmas.domain.food.*;
 
 import java.util.*;
 
 public class Bill {
     private final int reservationDate;
-    private final Map<Food, Integer> orderMenu = new HashMap();
+    private final Map<Food, Integer> orderMenu = new HashMap<>();
     private final TotalRegularPrice totalRegularPrice;
     private final WeekdayDiscount weekdayDiscount;
     private final WeekendDiscount weekendDiscount;
     private final SpecialDiscount specialDiscount;
-    private GiveawayEvent giveawayCount;
+    private final GiveawayEvent giveawayCount;
 
     public Bill(int reservationDate) {
         this.reservationDate = reservationDate;
