@@ -1,9 +1,6 @@
 package christmas.domain;
 
-import christmas.domain.price.SpecialDiscount;
-import christmas.domain.price.TotalRegularPrice;
-import christmas.domain.price.WeekdayDiscount;
-import christmas.domain.price.WeekendDiscount;
+import christmas.domain.price.*;
 import christmas.domain.food.*;
 
 import java.util.*;
@@ -15,8 +12,7 @@ public class Bill {
     private final WeekdayDiscount weekdayDiscount;
     private final WeekendDiscount weekendDiscount;
     private final SpecialDiscount specialDiscount;
-
-    private int giveawayCount;
+    private GiveawayEvent giveawayCount;
 
     public Bill(int reservationDate) {
         this.reservationDate = reservationDate;
@@ -24,6 +20,7 @@ public class Bill {
         this.weekdayDiscount = new WeekdayDiscount();
         this.weekendDiscount = new WeekendDiscount();
         this.specialDiscount = new SpecialDiscount();
+        this.giveawayCount = new GiveawayEvent();
     }
 
     public void inputOrderMenu(List<Food> orderMenus) {
@@ -64,10 +61,10 @@ public class Bill {
     }
 
     public void calculateGiveawayCount() {
-        giveawayCount = totalRegularPrice.get() / 120000;
+        giveawayCount.calculate(totalRegularPrice.get());
     }
 
     public int getGiveawayCount() {
-        return giveawayCount;
+        return giveawayCount.getCount();
     }
 }
