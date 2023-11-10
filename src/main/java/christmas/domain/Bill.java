@@ -1,5 +1,8 @@
 package christmas.domain;
 
+import christmas.domain.price.TotalRegularPrice;
+import christmas.domain.price.WeekdayDiscount;
+import christmas.domain.price.WeekendDiscount;
 import christmas.domain.food.*;
 
 import java.util.*;

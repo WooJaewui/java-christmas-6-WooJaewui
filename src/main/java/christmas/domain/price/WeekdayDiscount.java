@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.price;
 
 import christmas.domain.food.Dessert;
 import christmas.domain.food.Food;
