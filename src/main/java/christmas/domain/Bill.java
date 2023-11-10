@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.domain.price.SpecialDiscount;
 import christmas.domain.price.TotalRegularPrice;
 import christmas.domain.price.WeekdayDiscount;
 import christmas.domain.price.WeekendDiscount;
@@ -8,13 +9,13 @@ import christmas.domain.food.*;
 import java.util.*;
 
 public class Bill {
-    private static final int[] SPECIAL_DISCOUNT_DAY = {3,10,17,24,25,31};
-    private static final int SPECIAL_DISCOUNT = 1000;
     private final int reservationDate;
     private final Map<Food, Integer> orderMenu = new HashMap();
     private final TotalRegularPrice totalRegularPrice;
     private final WeekdayDiscount weekdayDiscount;
-    private WeekendDiscount weekendDiscount;
+    private final WeekendDiscount weekendDiscount;
+    private final SpecialDiscount specialDiscount;
+
     private int giveawayCount;
 
     public Bill(int reservationDate) {
@@ -22,6 +23,7 @@ public class Bill {
         this.totalRegularPrice = new TotalRegularPrice();
         this.weekdayDiscount = new WeekdayDiscount();
         this.weekendDiscount = new WeekendDiscount();
+        this.specialDiscount = new SpecialDiscount();
     }
 
     public void inputOrderMenu(List<Food> orderMenus) {
@@ -58,12 +60,7 @@ public class Bill {
     }
 
     public int getSpecialDiscount() {
-        long match = Arrays.stream(SPECIAL_DISCOUNT_DAY).filter(day -> day == reservationDate).count();
-        if (match > 0) {
-            return SPECIAL_DISCOUNT;
-        }
-
-        return 0;
+        return specialDiscount.get(reservationDate);
     }
 
     public void calculateGiveawayCount() {
