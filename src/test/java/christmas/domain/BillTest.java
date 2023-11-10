@@ -1,7 +1,9 @@
 package christmas.domain;
 
 import christmas.domain.food.Appetizer;
+import christmas.domain.food.Dessert;
 import christmas.domain.food.Food;
+import christmas.domain.food.Main;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -23,5 +25,39 @@ class BillTest {
         int expectedTotalPrice = 22000;
 
         assertThat(bill.getTotalRegularPrice()).isEqualTo(expectedTotalPrice);
+    }
+
+    @Test
+    void 평일할인_테스트1() {
+        Bill bill = new Bill(3);
+        List<Food> orderMenu = new ArrayList<>();
+        orderMenu.add(Appetizer.CAESAR_SALAD);
+        orderMenu.add(Appetizer.CAESAR_SALAD);
+        orderMenu.add(Appetizer.MUSHROOM_SOUP);
+        orderMenu.add(Dessert.CHOCO_CAKE);
+        orderMenu.add(Dessert.ICE_CREAM);
+
+        bill.inputOrderMenu(orderMenu);
+        bill.calculateWeekdayDiscount();
+
+        int expectedWeekdayDiscount = 4046;
+        assertThat(bill.getWeekdayDiscount()).isEqualTo(expectedWeekdayDiscount);
+    }
+
+    @Test
+    void 평일할인_테스트2() {
+        Bill bill = new Bill(3);
+        List<Food> orderMenu = new ArrayList<>();
+        orderMenu.add(Main.BARBECUE_RIBS);
+        orderMenu.add(Main.SEAFOOD_PASTA);
+        orderMenu.add(Appetizer.MUSHROOM_SOUP);
+        orderMenu.add(Dessert.CHOCO_CAKE);
+        orderMenu.add(Dessert.ICE_CREAM);
+
+        bill.inputOrderMenu(orderMenu);
+        bill.calculateWeekdayDiscount();
+
+        int expectedWeekdayDiscount = 4046;
+        assertThat(bill.getWeekdayDiscount()).isEqualTo(expectedWeekdayDiscount);
     }
 }
