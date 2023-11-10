@@ -15,6 +15,7 @@ public class Bill {
     private final Map<Food, Integer> orderMenu = new HashMap();
     private int totalRegularPrice;
     private int weekdayDiscount;
+    private int weekendDiscount;
 
 
     public Bill(int reservationDate) {
@@ -67,5 +68,23 @@ public class Bill {
 
     private boolean isWeekend() {
         return reservationDate % 7 == FRIDAY_MARK || reservationDate % 7 == SATURDAY_MARK;
+    }
+
+    public void calculateWeekendDiscount() {
+        weekendDiscount = 0;
+        if (!isWeekend()) {
+            return;
+        }
+
+        Set<Food> foods = orderMenu.keySet();
+        for (Food food : foods) {
+            if (food instanceof Main) {
+                weekendDiscount += ((Main)food).getWeekendDiscount() * orderMenu.get(food);
+            }
+        }
+    }
+
+    public int getWeekendDiscount() {
+        return weekendDiscount;
     }
 }

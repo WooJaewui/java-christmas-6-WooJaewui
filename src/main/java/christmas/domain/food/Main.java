@@ -7,6 +7,7 @@ public enum Main implements Food {
     CHRISTMAS_PASTA(25000);
 
     private final int price;
+    private static final int WEEKEND_DISCOUNT = 2023;
 
     Main(int price) {
         this.price = price;
@@ -15,5 +16,9 @@ public enum Main implements Food {
     @Override
     public int getRegularPrice() {
         return price;
+    }
+
+    public int getWeekendDiscount() {
+        return WEEKEND_DISCOUNT;
     }
 }
