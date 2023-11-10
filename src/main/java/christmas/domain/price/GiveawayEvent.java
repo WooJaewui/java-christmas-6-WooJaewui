@@ -19,4 +19,8 @@ public class GiveawayEvent {
     public int getCount() {
         return count;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }
