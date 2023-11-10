@@ -5,21 +5,20 @@ import christmas.domain.food.*;
 import java.util.*;
 
 public class Bill {
-    private static final int FRIDAY_MARK = 1;
-    private static final int SATURDAY_MARK = 2;
     private static final int[] SPECIAL_DISCOUNT_DAY = {3,10,17,24,25,31};
     private static final int SPECIAL_DISCOUNT = 1000;
-
     private final int reservationDate;
     private final Map<Food, Integer> orderMenu = new HashMap();
     private final TotalRegularPrice totalRegularPrice;
-    private int weekdayDiscount;
-    private int weekendDiscount;
+    private final WeekdayDiscount weekdayDiscount;
+    private WeekendDiscount weekendDiscount;
     private int giveawayCount;
 
     public Bill(int reservationDate) {
         this.reservationDate = reservationDate;
         this.totalRegularPrice = new TotalRegularPrice();
+        this.weekdayDiscount = new WeekdayDiscount();
+        this.weekendDiscount = new WeekendDiscount();
     }
 
     public void inputOrderMenu(List<Food> orderMenus) {
@@ -40,43 +39,19 @@ public class Bill {
     }
 
     public void calculateWeekdayDiscount() {
-        weekdayDiscount = 0;
-        if (isWeekend()) {
-            return;
-        }
-
-        Set<Food> foods = orderMenu.keySet();
-        for (Food food : foods) {
-            if (food instanceof Dessert) {
-                weekdayDiscount += ((Dessert)food).getWeekdayDiscount() * orderMenu.get(food);
-            }
-        }
+        weekdayDiscount.calculate(reservationDate, orderMenu);
     }
 
     public int getWeekdayDiscount() {
-        return weekdayDiscount;
-    }
-
-    private boolean isWeekend() {
-        return reservationDate % 7 == FRIDAY_MARK || reservationDate % 7 == SATURDAY_MARK;
+        return weekdayDiscount.get();
     }
 
     public void calculateWeekendDiscount() {
-        weekendDiscount = 0;
-        if (!isWeekend()) {
-            return;
-        }
-
-        Set<Food> foods = orderMenu.keySet();
-        for (Food food : foods) {
-            if (food instanceof Main) {
-                weekendDiscount += ((Main)food).getWeekendDiscount() * orderMenu.get(food);
-            }
-        }
+        weekendDiscount.calculate(reservationDate, orderMenu);
     }
 
     public int getWeekendDiscount() {
-        return weekendDiscount;
+        return weekendDiscount.get();
     }
 
     public int getSpecialDiscount() {
