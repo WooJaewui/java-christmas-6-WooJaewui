@@ -15,6 +15,7 @@ public class Bill {
     private int totalRegularPrice;
     private int weekdayDiscount;
     private int weekendDiscount;
+    private int giveawayCount;
 
     public Bill(int reservationDate) {
         this.reservationDate = reservationDate;
@@ -93,5 +94,13 @@ public class Bill {
         }
 
         return 0;
+    }
+
+    public void calculateGiveawayCount() {
+        giveawayCount = totalRegularPrice / 120000;
+    }
+
+    public int getGiveawayCount() {
+        return giveawayCount;
     }
 }
