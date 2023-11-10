@@ -13,7 +13,7 @@ public enum Main implements Food {
     }
 
     @Override
-    public int calculatePrice() {
+    public int getRegularPrice() {
         return price;
     }
 }

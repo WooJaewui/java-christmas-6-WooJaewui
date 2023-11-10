@@ -11,7 +11,7 @@ public enum Dessert implements Food {
     }
 
     @Override
-    public int calculatePrice() {
+    public int getRegularPrice() {
         return price;
     }
 }
