@@ -2,10 +2,12 @@ package christmas.domain;
 
 public class Bill {
     private final int reservationDate;
+    private final int christmasDiscount;
     private final int MAX_CHRISTMAS_DISCOUNT = 3400;
 
     public Bill(int reservationDate) {
         this.reservationDate = reservationDate;
+        this.christmasDiscount = calculateChristmasDiscount();
     }
 
     public int getChristmasDiscount() {
@@ -13,7 +15,7 @@ public class Bill {
             return 0;
         }
 
-        return calculateChristmasDiscount();
+        return christmasDiscount;
     }
 
     private int calculateChristmasDiscount() {
