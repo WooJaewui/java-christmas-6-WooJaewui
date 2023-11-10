@@ -8,9 +8,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class Bill {
+    private static final int FRIDAY_MARK = 1;
+    private static final int SATURDAY_MARK = 2;
+
     private final int reservationDate;
     private final Map<Food, Integer> orderMenu = new HashMap();
     private int totalRegularPrice;
+    private int weekdayDiscount;
 
 
     public Bill(int reservationDate) {
@@ -43,11 +47,25 @@ public class Bill {
         return totalRegularPrice;
     }
 
-    public boolean isWeekdayDiscount() {
-        if (reservationDate % 7 == 1 || reservationDate % 7 == 2) {
-            return true;
+    public void calculateWeekdayDiscount() {
+        weekdayDiscount = 0;
+        if (isWeekend()) {
+            return;
         }
 
-        return false;
+        Set<Food> foods = orderMenu.keySet();
+        for (Food food : foods) {
+            if (food instanceof Dessert) {
+                weekdayDiscount += ((Dessert)food).getWeekdayDiscount() * orderMenu.get(food);
+            }
+        }
+    }
+
+    public int getWeekdayDiscount() {
+        return weekdayDiscount;
+    }
+
+    private boolean isWeekend() {
+        return reservationDate % 7 == FRIDAY_MARK || reservationDate % 7 == SATURDAY_MARK;
     }
 }
