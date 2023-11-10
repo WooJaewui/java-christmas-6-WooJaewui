@@ -1,24 +1,24 @@
-package christmas.domain.event;
+package christmas.domain.cost;
 
-import christmas.domain.food.Dessert;
 import christmas.domain.food.Food;
+import christmas.domain.food.Main;
 
 import java.util.Map;
 import java.util.Set;
 
-public class WeekdayDiscount implements WeekDiscount {
+public class WeekendDiscount implements WeekDiscount {
     private int discount;
 
     public int calculate(int reservationDate, Map<Food, Integer> orderMenu) {
         discount = 0;
-        if (isWeekend(reservationDate)) {
+        if (!isWeekend(reservationDate)) {
             return discount;
         }
 
         Set<Food> foods = orderMenu.keySet();
         for (Food food : foods) {
-            if (food instanceof Dessert) {
-                discount += ((Dessert)food).getWeekdayDiscount() * orderMenu.get(food);
+            if (food instanceof Main) {
+                discount += ((Main)food).getWeekendDiscount() * orderMenu.get(food);
             }
         }
 

@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import christmas.domain.event.*;
+import christmas.domain.cost.*;
 import christmas.domain.food.*;
 
 import java.util.*;

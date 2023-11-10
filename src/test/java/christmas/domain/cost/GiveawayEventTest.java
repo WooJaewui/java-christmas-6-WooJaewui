@@ -1,4 +1,4 @@
-package christmas.domain.event;
+package christmas.domain.cost;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

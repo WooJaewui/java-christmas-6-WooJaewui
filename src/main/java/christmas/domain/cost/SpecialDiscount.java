@@ -1,4 +1,4 @@
-package christmas.domain.event;
+package christmas.domain.cost;
 
 import java.util.Arrays;
 
