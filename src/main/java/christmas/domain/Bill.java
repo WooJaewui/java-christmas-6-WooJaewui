@@ -12,13 +12,14 @@ public class Bill {
 
     private final int reservationDate;
     private final Map<Food, Integer> orderMenu = new HashMap();
-    private int totalRegularPrice;
+    private final TotalRegularPrice totalRegularPrice;
     private int weekdayDiscount;
     private int weekendDiscount;
     private int giveawayCount;
 
     public Bill(int reservationDate) {
         this.reservationDate = reservationDate;
+        this.totalRegularPrice = new TotalRegularPrice();
     }
 
     public void inputOrderMenu(List<Food> orderMenus) {
@@ -31,20 +32,11 @@ public class Bill {
             orderMenu.put(menu, count);
         }
 
-        calculateTotalRegularPrice();
-    }
-
-    private void calculateTotalRegularPrice() {
-        Set<Food> foods = orderMenu.keySet();
-        for (Food food : foods) {
-            for (int i = 1; i<= orderMenu.get(food); i++) {
-                totalRegularPrice += food.getRegularPrice();
-            }
-        }
+        totalRegularPrice.calculate(orderMenu);
     }
 
     public int getTotalRegularPrice() {
-        return totalRegularPrice;
+        return totalRegularPrice.get();
     }
 
     public void calculateWeekdayDiscount() {
@@ -97,7 +89,7 @@ public class Bill {
     }
 
     public void calculateGiveawayCount() {
-        giveawayCount = totalRegularPrice / 120000;
+        giveawayCount = totalRegularPrice.get() / 120000;
     }
 
     public int getGiveawayCount() {
