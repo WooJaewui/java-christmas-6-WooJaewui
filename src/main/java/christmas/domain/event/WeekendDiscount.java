@@ -9,7 +9,7 @@ import java.util.Set;
 public class WeekendDiscount implements WeekDiscount {
     private int discount;
 
-    public int check(int reservationDate, Map<Food, Integer> orderMenu) {
+    public int calculate(int reservationDate, Map<Food, Integer> orderMenu) {
         discount = 0;
         if (!isWeekend(reservationDate)) {
             return discount;

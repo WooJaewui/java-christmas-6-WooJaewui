@@ -10,7 +10,7 @@ public class GiveawayEvent {
     private int count;
     private int price;
 
-    public int check(int totalRegularPrice) {
+    public int calculate(int totalRegularPrice) {
         count = totalRegularPrice / EVENT_PRICE;
         price = count * EVENT_PRIZES.getRegularPrice();
 

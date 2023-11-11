@@ -36,15 +36,15 @@ public class Bill {
             orderMenu.put(menu, count);
         }
 
-        checkPriceAndEvent();
+        calculatePriceAndEvent();
     }
 
-    private void checkPriceAndEvent() {
-        totalRegularPrice.check(orderMenu);
-        christmasDiscount.check(reservationDate);
-        weekdayDiscount.check(reservationDate, orderMenu);
-        weekendDiscount.check(reservationDate, orderMenu);
-        specialDiscount.check(reservationDate);
-        giveawayCount.check(totalRegularPrice.get());
+    private void calculatePriceAndEvent() {
+        totalRegularPrice.calculate(orderMenu);
+        christmasDiscount.calculate(reservationDate);
+        weekdayDiscount.calculate(reservationDate, orderMenu);
+        weekendDiscount.calculate(reservationDate, orderMenu);
+        specialDiscount.calculate(reservationDate);
+        giveawayCount.calculate(totalRegularPrice.get());
     }
 }

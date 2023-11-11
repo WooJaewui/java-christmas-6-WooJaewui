@@ -15,7 +15,7 @@ class WeekdayDiscountTest {
         orderMenu.put(Dessert.CHOCO_CAKE, 1);
         orderMenu.put(Dessert.ICE_CREAM, 1);
 
-        weekdayDiscount.check(3, orderMenu);
+        weekdayDiscount.calculate(3, orderMenu);
 
         int expectedPrice = 4046;
 
@@ -31,7 +31,7 @@ class WeekdayDiscountTest {
         orderMenu.put(Appetizer.MUSHROOM_SOUP, 2);
         orderMenu.put(Drink.RED_WINE, 2);
 
-        weekdayDiscount.check(17, orderMenu);
+        weekdayDiscount.calculate(17, orderMenu);
 
         int expectedPrice = 4046;
 
@@ -47,7 +47,7 @@ class WeekdayDiscountTest {
         orderMenu.put(Appetizer.MUSHROOM_SOUP, 2);
         orderMenu.put(Drink.RED_WINE, 2);
 
-        weekdayDiscount.check(1, orderMenu);
+        weekdayDiscount.calculate(1, orderMenu);
 
         int expectedPrice = 0;
 
