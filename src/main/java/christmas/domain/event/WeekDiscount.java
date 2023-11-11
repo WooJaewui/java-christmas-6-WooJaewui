@@ -1,6 +1,6 @@
 package christmas.domain.event;
 
-public interface WeekDiscount {
+public interface WeekDiscount extends Event{
     int FRIDAY_MARK = 1;
     int SATURDAY_MARK = 2;
 

@@ -20,7 +20,7 @@ class WeekdayDiscountTest {
         }
 
         int expectedPrice = -4046;
-        Assertions.assertThat(weekdayDiscount.get()).isEqualTo(expectedPrice);
+        Assertions.assertThat(weekdayDiscount.getBenefit()).isEqualTo(expectedPrice);
     }
 
     @Test
@@ -37,7 +37,7 @@ class WeekdayDiscountTest {
         }
 
         int expectedPrice = -4046;
-        Assertions.assertThat(weekdayDiscount.get()).isEqualTo(expectedPrice);
+        Assertions.assertThat(weekdayDiscount.getBenefit()).isEqualTo(expectedPrice);
     }
 
     @Test
@@ -54,6 +54,6 @@ class WeekdayDiscountTest {
         }
 
         int expectedPrice = 0;
-        Assertions.assertThat(weekdayDiscount.get()).isEqualTo(expectedPrice);
+        Assertions.assertThat(weekdayDiscount.getBenefit()).isEqualTo(expectedPrice);
     }
 }

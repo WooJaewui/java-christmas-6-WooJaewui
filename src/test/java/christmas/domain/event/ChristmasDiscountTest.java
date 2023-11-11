@@ -11,7 +11,7 @@ class ChristmasDiscountTest {
 
         int expectedDiscount = -3400;
         assertThat(christmasDiscount.calculate(25)).isEqualTo(expectedDiscount);
-        assertThat(christmasDiscount.get()).isEqualTo(expectedDiscount);
+        assertThat(christmasDiscount.getBenefit()).isEqualTo(expectedDiscount);
     }
 
     @Test
@@ -20,7 +20,7 @@ class ChristmasDiscountTest {
 
         int expectedDiscount = -1000;
         assertThat(christmasDiscount.calculate(1)).isEqualTo(expectedDiscount);
-        assertThat(christmasDiscount.get()).isEqualTo(expectedDiscount);
+        assertThat(christmasDiscount.getBenefit()).isEqualTo(expectedDiscount);
     }
 
     @Test
@@ -29,6 +29,6 @@ class ChristmasDiscountTest {
 
         int expectedDiscount = -2600;
         assertThat(christmasDiscount.calculate(17)).isEqualTo(expectedDiscount);
-        assertThat(christmasDiscount.get()).isEqualTo(expectedDiscount);
+        assertThat(christmasDiscount.getBenefit()).isEqualTo(expectedDiscount);
     }
 }

@@ -7,18 +7,19 @@ import java.util.Map;
 import java.util.Set;
 
 public class WeekdayDiscount implements WeekDiscount {
-    private int discount;
+    private static final String NAME = "평일 할인";
+    private int benefit;
 
     public int calculate(Map<Food, Integer> orderMenu) {
-        discount = 0;
+        benefit = 0;
         Set<Food> foods = orderMenu.keySet();
         for (Food food : foods) {
             if (food instanceof Dessert) {
-                discount -= ((Dessert)food).getWeekdayDiscount() * orderMenu.get(food);
+                benefit -= ((Dessert)food).getWeekdayDiscount() * orderMenu.get(food);
             }
         }
 
-        return discount;
+        return benefit;
     }
 
     public boolean isEvent(int reservationDate, Map<Food, Integer> orderMenu) {
@@ -28,7 +29,13 @@ public class WeekdayDiscount implements WeekDiscount {
         return !isWeekend(reservationDate) && desertCount > 0;
     }
 
-    public int get() {
-        return discount;
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public int getBenefit() {
+        return benefit;
     }
 }

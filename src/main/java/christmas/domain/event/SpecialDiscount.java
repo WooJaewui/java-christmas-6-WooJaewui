@@ -2,13 +2,14 @@ package christmas.domain.event;
 
 import java.util.Arrays;
 
-public class SpecialDiscount {
+public class SpecialDiscount implements Event {
     private static final int[] SPECIAL_DISCOUNT_DAY = {3,10,17,24,25,31};
-    private int discount;
+    private static final String NAME = "특별 할인";
+    private int benefit;
 
     public int calculate() {
-        discount = -1000;
-        return discount;
+        benefit = -1000;
+        return benefit;
     }
 
     public boolean isEvent(int reservationDate) {
@@ -16,7 +17,13 @@ public class SpecialDiscount {
         return match > 0;
     }
 
-    public int get() {
-        return discount;
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
+    @Override
+    public int getBenefit() {
+        return benefit;
     }
 }

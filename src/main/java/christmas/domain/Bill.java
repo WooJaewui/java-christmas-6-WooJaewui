@@ -54,25 +54,31 @@ public class Bill {
     private int getTotalBenefitPrice() {
         int benefitPrice = 0;
         if (isEvent()) {
-            if (christmasDiscount.isEvent(reservationDate)) {
-                benefitPrice += christmasDiscount.calculate(reservationDate);
-            }
+            benefitPrice = calculateEvent(benefitPrice);
+        }
 
-            if (weekdayDiscount.isEvent(reservationDate, orderMenu)) {
-                benefitPrice += weekdayDiscount.calculate(orderMenu);
-            }
+        return benefitPrice;
+    }
 
-            if (weekendDiscount.isEvent(reservationDate, orderMenu)) {
-                benefitPrice += weekendDiscount.calculate(orderMenu);
-            }
+    private int calculateEvent(int benefitPrice) {
+        if (christmasDiscount.isEvent(reservationDate)) {
+            benefitPrice += christmasDiscount.calculate(reservationDate);
+        }
 
-            if (specialDiscount.isEvent(reservationDate)) {
-                benefitPrice += specialDiscount.calculate();
-            }
+        if (weekdayDiscount.isEvent(reservationDate, orderMenu)) {
+            benefitPrice += weekdayDiscount.calculate(orderMenu);
+        }
 
-            if (giveawayCount.isEvent(totalRegularPrice.get())) {
-                benefitPrice += giveawayCount.calculate(totalRegularPrice.get());
-            }
+        if (weekendDiscount.isEvent(reservationDate, orderMenu)) {
+            benefitPrice += weekendDiscount.calculate(orderMenu);
+        }
+
+        if (specialDiscount.isEvent(reservationDate)) {
+            benefitPrice += specialDiscount.calculate();
+        }
+
+        if (giveawayCount.isEvent(totalRegularPrice.get())) {
+            benefitPrice += giveawayCount.calculate(totalRegularPrice.get());
         }
 
         return benefitPrice;

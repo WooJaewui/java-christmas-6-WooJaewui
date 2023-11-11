@@ -15,7 +15,7 @@ class SpecialDiscountTest {
             Assertions.assertThat(specialDiscount.calculate()).isEqualTo(expectedPrice);
         }
 
-        Assertions.assertThat(specialDiscount.get()).isEqualTo(expectedPrice);
+        Assertions.assertThat(specialDiscount.getBenefit()).isEqualTo(expectedPrice);
     }
 
     @ParameterizedTest
@@ -28,6 +28,6 @@ class SpecialDiscountTest {
             Assertions.assertThat(specialDiscount.calculate()).isEqualTo(expectedPrice);
         }
 
-        Assertions.assertThat(specialDiscount.get()).isEqualTo(expectedPrice);
+        Assertions.assertThat(specialDiscount.getBenefit()).isEqualTo(expectedPrice);
     }
 }
