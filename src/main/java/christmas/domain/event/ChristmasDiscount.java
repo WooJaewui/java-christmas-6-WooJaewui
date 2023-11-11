@@ -5,7 +5,7 @@ public class ChristmasDiscount {
     private static final int CHRISTMAS_DAY = 25;
     private int discount;
 
-    public int calculate(int reservationDate) {
+    public int check(int reservationDate) {
         discount = 0;
         if (reservationDate > CHRISTMAS_DAY) {
             return discount;

@@ -8,7 +8,7 @@ import java.util.Set;
 public class TotalRegularPrice {
     private int price;
 
-    public int calculate(Map<Food, Integer> orderMenu) {
+    public int check(Map<Food, Integer> orderMenu) {
         Set<Food> foods = orderMenu.keySet();
         for (Food food : foods) {
             for (int i = 1; i<= orderMenu.get(food); i++) {

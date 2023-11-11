@@ -10,7 +10,7 @@ class ChristmasDiscountTest {
         ChristmasDiscount christmasDiscount = new ChristmasDiscount();
 
         int expectedDiscount = 3400;
-        assertThat(christmasDiscount.calculate(25)).isEqualTo(expectedDiscount);
+        assertThat(christmasDiscount.check(25)).isEqualTo(expectedDiscount);
         assertThat(christmasDiscount.get()).isEqualTo(expectedDiscount);
     }
 
@@ -19,7 +19,7 @@ class ChristmasDiscountTest {
         ChristmasDiscount christmasDiscount = new ChristmasDiscount();
 
         int expectedDiscount = 1000;
-        assertThat(christmasDiscount.calculate(1)).isEqualTo(expectedDiscount);
+        assertThat(christmasDiscount.check(1)).isEqualTo(expectedDiscount);
         assertThat(christmasDiscount.get()).isEqualTo(expectedDiscount);
     }
 
@@ -28,7 +28,7 @@ class ChristmasDiscountTest {
         ChristmasDiscount christmasDiscount = new ChristmasDiscount();
 
         int expectedDiscount = 2600;
-        assertThat(christmasDiscount.calculate(17)).isEqualTo(expectedDiscount);
+        assertThat(christmasDiscount.check(17)).isEqualTo(expectedDiscount);
         assertThat(christmasDiscount.get()).isEqualTo(expectedDiscount);
     }
 }
