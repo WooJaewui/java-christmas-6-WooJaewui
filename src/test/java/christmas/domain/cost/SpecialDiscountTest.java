@@ -11,7 +11,8 @@ class SpecialDiscountTest {
         SpecialDiscount specialDiscount = new SpecialDiscount();
         int expectedPrice = 0;
 
-        Assertions.assertThat(specialDiscount.get(reservationDate)).isEqualTo(expectedPrice);
+        Assertions.assertThat(specialDiscount.calculate(reservationDate)).isEqualTo(expectedPrice);
+        Assertions.assertThat(specialDiscount.get()).isEqualTo(expectedPrice);
     }
 
     @ParameterizedTest
@@ -20,6 +21,7 @@ class SpecialDiscountTest {
         SpecialDiscount specialDiscount = new SpecialDiscount();
         int expectedPrice = 1000;
 
-        Assertions.assertThat(specialDiscount.get(reservationDate)).isEqualTo(expectedPrice);
+        Assertions.assertThat(specialDiscount.calculate(reservationDate)).isEqualTo(expectedPrice);
+        Assertions.assertThat(specialDiscount.get()).isEqualTo(expectedPrice);
     }
 }

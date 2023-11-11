@@ -35,42 +35,15 @@ public class Bill {
             orderMenu.put(menu, count);
         }
 
+        calculateCost();
+    }
+
+    private void calculateCost() {
         totalRegularPrice.calculate(orderMenu);
-    }
-
-    public int getTotalRegularPrice() {
-        return totalRegularPrice.get();
-    }
-
-    public void calculateWeekdayDiscount() {
+        christmasDiscount.calculate(reservationDate);
         weekdayDiscount.calculate(reservationDate, orderMenu);
-    }
-
-    public int getWeekdayDiscount() {
-        return weekdayDiscount.get();
-    }
-
-    public void calculateWeekendDiscount() {
         weekendDiscount.calculate(reservationDate, orderMenu);
-    }
-
-    public int getWeekendDiscount() {
-        return weekendDiscount.get();
-    }
-
-    public int getSpecialDiscount() {
-        return specialDiscount.get(reservationDate);
-    }
-
-    public void calculateGiveawayCount() {
+        specialDiscount.calculate(reservationDate);
         giveawayCount.calculate(totalRegularPrice.get());
-    }
-
-    public int getGiveawayCount() {
-        return giveawayCount.getCount();
-    }
-
-    public int getChristmasDiscount() {
-        return christmasDiscount.get();
     }
 }
