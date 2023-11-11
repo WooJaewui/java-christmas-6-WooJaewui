@@ -11,7 +11,10 @@ class SpecialDiscountTest {
         SpecialDiscount specialDiscount = new SpecialDiscount();
 
         int expectedPrice = 0;
-        Assertions.assertThat(specialDiscount.calculate(reservationDate)).isEqualTo(expectedPrice);
+        if (specialDiscount.isEvent(reservationDate)) {
+            Assertions.assertThat(specialDiscount.calculate()).isEqualTo(expectedPrice);
+        }
+
         Assertions.assertThat(specialDiscount.get()).isEqualTo(expectedPrice);
     }
 
@@ -21,7 +24,10 @@ class SpecialDiscountTest {
         SpecialDiscount specialDiscount = new SpecialDiscount();
 
         int expectedPrice = -1000;
-        Assertions.assertThat(specialDiscount.calculate(reservationDate)).isEqualTo(expectedPrice);
+        if (specialDiscount.isEvent(reservationDate)) {
+            Assertions.assertThat(specialDiscount.calculate()).isEqualTo(expectedPrice);
+        }
+
         Assertions.assertThat(specialDiscount.get()).isEqualTo(expectedPrice);
     }
 }

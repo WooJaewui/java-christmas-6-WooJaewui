@@ -15,7 +15,10 @@ class WeekendDiscountTest {
         orderMenu.put(Main.CHRISTMAS_PASTA, 1);
         orderMenu.put(Main.SEAFOOD_PASTA, 1);
 
-        weekendDiscount.calculate(1, orderMenu);
+        if (weekendDiscount.isEvent(1, orderMenu)) {
+            weekendDiscount.calculate(orderMenu);
+        }
+
 
         int expectedPrice = -4046;
         Assertions.assertThat(weekendDiscount.get()).isEqualTo(expectedPrice);
@@ -31,7 +34,9 @@ class WeekendDiscountTest {
         orderMenu.put(Appetizer.MUSHROOM_SOUP, 2);
         orderMenu.put(Drink.RED_WINE, 2);
 
-        weekendDiscount.calculate(30, orderMenu);
+        if (weekendDiscount.isEvent(30, orderMenu)) {
+            weekendDiscount.calculate(orderMenu);
+        }
 
         int expectedPrice = -14161;
         Assertions.assertThat(weekendDiscount.get()).isEqualTo(expectedPrice);
@@ -46,7 +51,9 @@ class WeekendDiscountTest {
         orderMenu.put(Appetizer.MUSHROOM_SOUP, 2);
         orderMenu.put(Drink.RED_WINE, 2);
 
-        weekendDiscount.calculate(4, orderMenu);
+        if (weekendDiscount.isEvent(4, orderMenu)) {
+            weekendDiscount.calculate(orderMenu);
+        }
 
         int expectedPrice = 0;
         Assertions.assertThat(weekendDiscount.get()).isEqualTo(expectedPrice);
