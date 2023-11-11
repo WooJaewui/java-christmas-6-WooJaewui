@@ -17,7 +17,6 @@ public class Bill {
     private final WeekendDiscount weekendDiscount;
     private final SpecialDiscount specialDiscount;
     private final GiveawayEvent giveawayCount;
-
     private Badge badge;
 
     public Bill(int reservationDate) {
