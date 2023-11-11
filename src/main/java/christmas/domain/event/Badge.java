@@ -7,6 +7,9 @@ public enum Badge {
     SANTA("산타");
 
     private final String name;
+    private static final int FIVE_THOUSAND = 5000;
+    private static final int TEN_THOUSAND = 10000;
+    private static final int TWENTY_THOUSAND = 20000;
 
     Badge(String name) {
         this.name = name;
@@ -17,15 +20,13 @@ public enum Badge {
     }
 
     public Badge calculate(int totalBenefitPrice) {
-        if (5000 <= totalBenefitPrice && totalBenefitPrice < 10000) {
+        if (FIVE_THOUSAND <= totalBenefitPrice && totalBenefitPrice < TEN_THOUSAND) {
             return STAR;
         }
-
-        if (10000 <= totalBenefitPrice && totalBenefitPrice < 20000) {
+        if (TEN_THOUSAND <= totalBenefitPrice && totalBenefitPrice < TWENTY_THOUSAND) {
             return TREE;
         }
-
-        if (20000 <= totalBenefitPrice) {
+        if (TWENTY_THOUSAND <= totalBenefitPrice) {
             return SANTA;
         }
 
