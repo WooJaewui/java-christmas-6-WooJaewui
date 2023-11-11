@@ -18,6 +18,8 @@ public class Bill {
     private final SpecialDiscount specialDiscount;
     private final GiveawayEvent giveawayCount;
 
+    private Badge badge;
+
     public Bill(int reservationDate) {
         this.reservationDate = reservationDate;
         this.totalRegularPrice = new TotalRegularPrice();
@@ -45,6 +47,7 @@ public class Bill {
     private void calculatePriceAndEvent() {
         totalRegularPrice.calculate(orderMenu);
         totalBenefitPrice.calculate(calculateEvent());
+        badge = badge.calculate(totalBenefitPrice.get());
     }
 
     private int calculateEvent() {
