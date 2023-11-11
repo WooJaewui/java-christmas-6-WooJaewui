@@ -9,12 +9,8 @@ import java.util.Set;
 public class WeekdayDiscount implements WeekDiscount {
     private int discount;
 
-    public int calculate(int reservationDate, Map<Food, Integer> orderMenu) {
+    public int calculate(Map<Food, Integer> orderMenu) {
         discount = 0;
-        if (isWeekend(reservationDate)) {
-            return discount;
-        }
-
         Set<Food> foods = orderMenu.keySet();
         for (Food food : foods) {
             if (food instanceof Dessert) {
@@ -23,6 +19,13 @@ public class WeekdayDiscount implements WeekDiscount {
         }
 
         return discount;
+    }
+
+    public boolean isEvent(int reservationDate, Map<Food, Integer> orderMenu) {
+        Set<Food> foods = orderMenu.keySet();
+        long desertCount = foods.stream().filter(food -> food instanceof Dessert).count();
+
+        return !isWeekend(reservationDate) && desertCount > 0;
     }
 
     public int get() {

@@ -6,13 +6,12 @@ public class ChristmasDiscount {
     private int discount;
 
     public int calculate(int reservationDate) {
-        discount = 0;
-        if (reservationDate > CHRISTMAS_DAY) {
-            return discount;
-        }
-
         discount = MAX_DISCOUNT + (CHRISTMAS_DAY - reservationDate) * 100;
         return discount;
+    }
+
+    public boolean isEvent(int reservationDate) {
+        return reservationDate > CHRISTMAS_DAY;
     }
 
     public int get() {

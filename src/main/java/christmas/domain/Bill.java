@@ -10,6 +10,7 @@ import java.util.*;
 public class Bill {
     private final int reservationDate;
     private final Map<Food, Integer> orderMenu = new HashMap<>();
+    private final Map<String, Integer> benefitDetails = new HashMap<>();
     private final TotalRegularPrice totalRegularPrice;
     private final TotalBenefitPrice totalBenefitPrice;
     private final ChristmasDiscount christmasDiscount;
@@ -45,18 +46,33 @@ public class Bill {
 
     private void calculatePriceAndEvent() {
         totalRegularPrice.calculate(orderMenu);
-        totalBenefitPrice.calculate(calculateEvent());
+        totalBenefitPrice.calculate(getTotalBenefitPrice());
         badge = badge.calculate(totalBenefitPrice.get());
+        calculateBenefitDetails();
     }
 
-    private int calculateEvent() {
+    private int getTotalBenefitPrice() {
         int benefitPrice = 0;
         if (isEvent()) {
-            benefitPrice += christmasDiscount.calculate(reservationDate);
-            benefitPrice += weekdayDiscount.calculate(reservationDate, orderMenu);
-            benefitPrice += weekendDiscount.calculate(reservationDate, orderMenu);
-            benefitPrice += specialDiscount.calculate(reservationDate);
-            benefitPrice += giveawayCount.calculate(totalRegularPrice.get());
+            if (christmasDiscount.isEvent(reservationDate)) {
+                benefitPrice += christmasDiscount.calculate(reservationDate);
+            }
+
+            if (weekdayDiscount.isEvent(reservationDate, orderMenu)) {
+                benefitPrice += weekdayDiscount.calculate(orderMenu);
+            }
+
+            if (weekendDiscount.isEvent(reservationDate, orderMenu)) {
+                benefitPrice += weekendDiscount.calculate(orderMenu);
+            }
+
+            if (specialDiscount.isEvent(reservationDate)) {
+                benefitPrice += specialDiscount.calculate();
+            }
+
+            if (giveawayCount.isEvent(totalRegularPrice.get())) {
+                benefitPrice += giveawayCount.calculate(totalRegularPrice.get());
+            }
         }
 
         return benefitPrice;
@@ -64,5 +80,9 @@ public class Bill {
 
     private boolean isEvent() {
         return totalBenefitPrice.get() >= 10000;
+    }
+
+    private void calculateBenefitDetails() {
+
     }
 }

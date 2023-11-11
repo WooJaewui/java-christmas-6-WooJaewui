@@ -17,6 +17,10 @@ public class GiveawayEvent {
         return count;
     }
 
+    public boolean isEvent(int totalRegularPrice) {
+        return totalRegularPrice >= EVENT_PRICE;
+    }
+
     public int getCount() {
         return count;
     }
