@@ -8,7 +8,7 @@ import java.util.Set;
 public class TotalBenefitPrice {
     private int price;
 
-    public int check(int totalBenefitPrice) {
+    public int calculate(int totalBenefitPrice) {
         this.price = totalBenefitPrice;
 
         return price;
