@@ -9,6 +9,7 @@ public class Bill {
     private final int reservationDate;
     private final Map<Food, Integer> orderMenu = new HashMap<>();
     private final TotalRegularPrice totalRegularPrice;
+    private final ChristmasDiscount christmasDiscount;
     private final WeekdayDiscount weekdayDiscount;
     private final WeekendDiscount weekendDiscount;
     private final SpecialDiscount specialDiscount;
@@ -17,6 +18,7 @@ public class Bill {
     public Bill(int reservationDate) {
         this.reservationDate = reservationDate;
         this.totalRegularPrice = new TotalRegularPrice();
+        this.christmasDiscount = new ChristmasDiscount();
         this.weekdayDiscount = new WeekdayDiscount();
         this.weekendDiscount = new WeekendDiscount();
         this.specialDiscount = new SpecialDiscount();
@@ -66,5 +68,9 @@ public class Bill {
 
     public int getGiveawayCount() {
         return giveawayCount.getCount();
+    }
+
+    public int getChristmasDiscount() {
+        return christmasDiscount.get();
     }
 }
