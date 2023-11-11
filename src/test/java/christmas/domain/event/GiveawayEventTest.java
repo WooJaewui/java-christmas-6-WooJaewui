@@ -10,8 +10,7 @@ class GiveawayEventTest {
         giveawayEvent.calculate(120000);
 
         int expectedCount = 1;
-        int expectedPrice = 25000;
-
+        int expectedPrice = -25000;
         Assertions.assertThat(giveawayEvent.getCount()).isEqualTo(expectedCount);
         Assertions.assertThat(giveawayEvent.getPrice()).isEqualTo(expectedPrice);
     }
@@ -23,7 +22,6 @@ class GiveawayEventTest {
 
         int expectedCount = 0;
         int expectedPrice = 0;
-
         Assertions.assertThat(giveawayEvent.getCount()).isEqualTo(expectedCount);
         Assertions.assertThat(giveawayEvent.getPrice()).isEqualTo(expectedPrice);
     }
@@ -34,8 +32,7 @@ class GiveawayEventTest {
         giveawayEvent.calculate(700000);
 
         int expectedCount = 5;
-        int expectedPrice = 125000;
-
+        int expectedPrice = -125000;
         Assertions.assertThat(giveawayEvent.getCount()).isEqualTo(expectedCount);
         Assertions.assertThat(giveawayEvent.getPrice()).isEqualTo(expectedPrice);
     }

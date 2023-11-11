@@ -13,7 +13,7 @@ public class SpecialDiscount {
             return discount;
         }
 
-        discount = 1000;
+        discount = -1000;
         return discount;
     }
 

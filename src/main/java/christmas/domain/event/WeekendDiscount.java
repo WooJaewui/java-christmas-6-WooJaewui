@@ -18,7 +18,7 @@ public class WeekendDiscount implements WeekDiscount {
         Set<Food> foods = orderMenu.keySet();
         for (Food food : foods) {
             if (food instanceof Main) {
-                discount += ((Main)food).getWeekendDiscount() * orderMenu.get(food);
+                discount -= ((Main)food).getWeekendDiscount() * orderMenu.get(food);
             }
         }
 

@@ -1,7 +1,7 @@
 package christmas.domain.event;
 
 public class ChristmasDiscount {
-    private static final int MAX_DISCOUNT = 3400;
+    private static final int MAX_DISCOUNT = -3400;
     private static final int CHRISTMAS_DAY = 25;
     private int discount;
 
@@ -11,7 +11,7 @@ public class ChristmasDiscount {
             return discount;
         }
 
-        discount = MAX_DISCOUNT - (CHRISTMAS_DAY - reservationDate) * 100;
+        discount = MAX_DISCOUNT + (CHRISTMAS_DAY - reservationDate) * 100;
         return discount;
     }
 
