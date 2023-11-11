@@ -23,9 +23,11 @@ public enum Badge {
         if (FIVE_THOUSAND <= totalBenefitPrice && totalBenefitPrice < TEN_THOUSAND) {
             return STAR;
         }
+
         if (TEN_THOUSAND <= totalBenefitPrice && totalBenefitPrice < TWENTY_THOUSAND) {
             return TREE;
         }
+
         if (TWENTY_THOUSAND <= totalBenefitPrice) {
             return SANTA;
         }
