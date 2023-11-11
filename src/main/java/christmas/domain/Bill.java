@@ -32,9 +32,10 @@ public class Bill {
     }
 
     public void inputOrderMenu(List<Food> orderMenus) {
-        if (notValidate(orderMenus)) {
+        if (validate(orderMenus)) {
             return;
         }
+
         for (Food menu : orderMenus) {
             int count = 1;
             if (orderMenu.get(menu) != null) {
@@ -47,7 +48,7 @@ public class Bill {
         calculatePriceAndEvent();
     }
 
-    private boolean notValidate(List<Food> orderMenus) {
+    private boolean validate(List<Food> orderMenus) {
         return orderMenus.stream().allMatch(food -> food instanceof Drink);
     }
 
