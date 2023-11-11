@@ -66,6 +66,10 @@ public class Bill {
         return benefitPrice;
     }
 
+    private boolean isEvent() {
+        return totalBenefitPrice.get() >= 10000;
+    }
+
     private int calculateEvent(int benefitPrice) {
         if (christmasEvent.isEvent(reservationDate)) {
             benefitPrice = calculateChristMasEvent(benefitPrice);
@@ -88,10 +92,6 @@ public class Bill {
         }
 
         return benefitPrice;
-    }
-
-    private boolean isEvent() {
-        return totalBenefitPrice.get() >= 10000;
     }
 
     private int calculateChristMasEvent(int benefitPrice) {
