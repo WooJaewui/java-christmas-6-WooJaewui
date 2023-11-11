@@ -32,6 +32,9 @@ public class Bill {
     }
 
     public void inputOrderMenu(List<Food> orderMenus) {
+        if (notValidate(orderMenus)) {
+            return;
+        }
         for (Food menu : orderMenus) {
             int count = 1;
             if (orderMenu.get(menu) != null) {
@@ -44,11 +47,14 @@ public class Bill {
         calculatePriceAndEvent();
     }
 
+    private boolean notValidate(List<Food> orderMenus) {
+        return orderMenus.stream().allMatch(food -> food instanceof Drink);
+    }
+
     private void calculatePriceAndEvent() {
         totalRegularPrice.calculate(orderMenu);
         totalBenefitPrice.calculate(getTotalBenefitPrice());
         badge = badge.calculate(totalBenefitPrice.get());
-        calculateBenefitDetails();
     }
 
     private int getTotalBenefitPrice() {
@@ -62,23 +68,23 @@ public class Bill {
 
     private int calculateEvent(int benefitPrice) {
         if (christmasDiscount.isEvent(reservationDate)) {
-            benefitPrice += christmasDiscount.calculate(reservationDate);
+            benefitPrice = calculateChristMasDiscount(benefitPrice);
         }
 
         if (weekdayDiscount.isEvent(reservationDate, orderMenu)) {
-            benefitPrice += weekdayDiscount.calculate(orderMenu);
+            benefitPrice = calculateWeekdayDiscount(benefitPrice);
         }
 
         if (weekendDiscount.isEvent(reservationDate, orderMenu)) {
-            benefitPrice += weekendDiscount.calculate(orderMenu);
+            benefitPrice = calculateWeekendDiscount(benefitPrice);
         }
 
         if (specialDiscount.isEvent(reservationDate)) {
-            benefitPrice += specialDiscount.calculate();
+            benefitPrice = calculateSpecialDiscount(benefitPrice);
         }
 
         if (giveawayCount.isEvent(totalRegularPrice.get())) {
-            benefitPrice += giveawayCount.calculate(totalRegularPrice.get());
+            benefitPrice = calculateGiveawayCount(benefitPrice);
         }
 
         return benefitPrice;
@@ -88,7 +94,38 @@ public class Bill {
         return totalBenefitPrice.get() >= 10000;
     }
 
-    private void calculateBenefitDetails() {
+    private int calculateChristMasDiscount(int benefitPrice) {
+        benefitPrice += christmasDiscount.calculate(reservationDate);
+        benefitDetails.put(christmasDiscount.getName(), christmasDiscount.getBenefit());
 
+        return benefitPrice;
+    }
+
+    private int calculateWeekdayDiscount(int benefitPrice) {
+        benefitPrice += weekdayDiscount.calculate(orderMenu);
+        benefitDetails.put(weekdayDiscount.getName(), weekdayDiscount.getBenefit());
+
+        return benefitPrice;
+    }
+
+    private int calculateWeekendDiscount(int benefitPrice) {
+        benefitPrice += weekendDiscount.calculate(orderMenu);
+        benefitDetails.put(weekendDiscount.getName(), weekendDiscount.getBenefit());
+
+        return benefitPrice;
+    }
+
+    private int calculateSpecialDiscount(int benefitPrice) {
+        benefitPrice += specialDiscount.calculate();
+        benefitDetails.put(specialDiscount.getName(), specialDiscount.getBenefit());
+
+        return benefitPrice;
+    }
+
+    private int calculateGiveawayCount(int benefitPrice) {
+        benefitPrice += giveawayCount.calculate(totalRegularPrice.get());
+        benefitDetails.put(giveawayCount.getName(), giveawayCount.getBenefit());
+
+        return benefitPrice;
     }
 }
