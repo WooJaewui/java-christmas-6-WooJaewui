@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-class WeekendDiscountTest {
+class WeekendEventTest {
     @Test
     void 주말할인_금액_테스트1() {
-        WeekendDiscount weekendDiscount = new WeekendDiscount();
+        WeekendEvent weekendDiscount = new WeekendEvent();
         Map<Food, Integer> orderMenu = new HashMap<>();
         orderMenu.put(Main.CHRISTMAS_PASTA, 1);
         orderMenu.put(Main.SEAFOOD_PASTA, 1);
@@ -26,7 +26,7 @@ class WeekendDiscountTest {
 
     @Test
     void 주말할인_금액_테스트2() {
-        WeekendDiscount weekendDiscount = new WeekendDiscount();
+        WeekendEvent weekendDiscount = new WeekendEvent();
         Map<Food, Integer> orderMenu = new HashMap<>();
         orderMenu.put(Dessert.ICE_CREAM, 2);
         orderMenu.put(Main.BARBECUE_RIBS,5);
@@ -44,7 +44,7 @@ class WeekendDiscountTest {
 
     @Test
     void 주말할인_금액_테스트3() {
-        WeekendDiscount weekendDiscount = new WeekendDiscount();
+        WeekendEvent weekendDiscount = new WeekendEvent();
         Map<Food, Integer> orderMenu = new HashMap<>();
         orderMenu.put(Dessert.ICE_CREAM, 2);
         orderMenu.put(Main.BARBECUE_RIBS,2);

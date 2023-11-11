@@ -2,7 +2,7 @@ package christmas.domain.event;
 
 import java.util.Arrays;
 
-public class SpecialDiscount implements Event {
+public class SpecialEvent implements Event {
     private static final int[] SPECIAL_DISCOUNT_DAY = {3,10,17,24,25,31};
     private static final String NAME = "특별 할인";
     private int benefit;
