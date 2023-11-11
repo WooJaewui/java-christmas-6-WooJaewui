@@ -1,4 +1,4 @@
-package christmas.domain.cost;
+package christmas.domain.event;
 
 import christmas.domain.food.*;
 import org.assertj.core.api.Assertions;

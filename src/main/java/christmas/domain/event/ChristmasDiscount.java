@@ -1,4 +1,4 @@
-package christmas.domain.cost;
+package christmas.domain.event;
 
 public class ChristmasDiscount {
     private static final int MAX_DISCOUNT = 3400;

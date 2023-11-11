@@ -1,7 +1,8 @@
 package christmas.domain;
 
-import christmas.domain.cost.*;
+import christmas.domain.event.*;
 import christmas.domain.food.*;
+import christmas.domain.price.TotalRegularPrice;
 
 import java.util.*;
 
