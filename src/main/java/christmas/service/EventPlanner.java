@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.service;
 
 import christmas.domain.dto.EventDto;
 import christmas.domain.event.Events;
@@ -10,13 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Bill {
+public class EventPlanner {
     private final int reservationDate;
     private final Map<Food, Integer> orderMenu = new HashMap<>();
     private final TotalRegularPrice totalRegularPrice;
     private final Events events;
 
-    public Bill(int reservationDate) {
+    public EventPlanner(int reservationDate) {
         this.reservationDate = reservationDate;
         this.totalRegularPrice = new TotalRegularPrice();
         this.events = new Events();
@@ -42,5 +42,17 @@ public class Bill {
 
     private boolean validate(List<Food> orderMenus) {
         return orderMenus.stream().allMatch(food -> food instanceof Drink);
+    }
+
+    public int getReservationDate() {
+        return reservationDate;
+    }
+
+    public Map<Food, Integer> getOrderMenu() {
+        return orderMenu;
+    }
+
+    public int getTotalRegularPrice() {
+        return totalRegularPrice.get();
     }
 }
