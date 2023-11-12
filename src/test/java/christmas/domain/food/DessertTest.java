@@ -1,7 +1,8 @@
 package christmas.domain.food;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class DessertTest {
     @Test
@@ -9,7 +10,7 @@ class DessertTest {
         Food chocoCake = Dessert.CHOCO_CAKE;
         int chocoCakePrice = 15000;
 
-        Assertions.assertThat(chocoCake.getRegularPrice()).isEqualTo(chocoCakePrice);
+        assertThat(chocoCake.getRegularPrice()).isEqualTo(chocoCakePrice);
     }
 
     @Test
@@ -17,6 +18,6 @@ class DessertTest {
         Food iceCream = Dessert.ICE_CREAM;
         int iceCreamPrice = 5000;
 
-        Assertions.assertThat(iceCream.getRegularPrice()).isEqualTo(iceCreamPrice);
+        assertThat(iceCream.getRegularPrice()).isEqualTo(iceCreamPrice);
     }
 }

@@ -2,13 +2,12 @@ package christmas.domain.event;
 
 import christmas.domain.dto.EventDto;
 import christmas.domain.food.*;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class WeekendEventTest {
     @Test
