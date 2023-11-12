@@ -1,5 +1,8 @@
 package christmas.domain.event;
 
+import christmas.domain.dto.EventDto;
+import christmas.domain.event.category.Event;
+
 import java.util.Arrays;
 
 public class SpecialEvent implements Event {
@@ -7,13 +10,19 @@ public class SpecialEvent implements Event {
     private static final String NAME = "특별 할인";
     private int benefit;
 
-    public int calculate() {
-        benefit = -1000;
-        return benefit;
+    @Override
+    public int calculate(EventDto eventDto) {
+        if (!isEvent(eventDto)) {
+            return benefit = 0;
+        }
+
+        return benefit = -1000;
     }
 
-    public boolean isEvent(int reservationDate) {
+    public boolean isEvent(EventDto eventDto) {
+        int reservationDate = eventDto.getReservationDate();
         long match = Arrays.stream(SPECIAL_DISCOUNT_DAY).filter(day -> day == reservationDate).count();
+
         return match > 0;
     }
 

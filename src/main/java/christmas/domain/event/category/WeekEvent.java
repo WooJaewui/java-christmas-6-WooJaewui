@@ -1,4 +1,4 @@
-package christmas.domain.event;
+package christmas.domain.event.category;
 
 public interface WeekEvent extends Event{
     int FRIDAY_MARK = 1;

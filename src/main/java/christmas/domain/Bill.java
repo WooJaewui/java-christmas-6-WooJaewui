@@ -17,7 +17,7 @@ public class Bill {
     private final WeekdayEvent weekdayEvent;
     private final WeekendEvent weekendEvent;
     private final SpecialEvent specialEvent;
-    private final GiveawayEvent giveawayEvent;
+    private final ChampaignGiveawayEvent giveawayEvent;
     private Badge badge;
 
     public Bill(int reservationDate) {
@@ -28,7 +28,7 @@ public class Bill {
         this.weekdayEvent = new WeekdayEvent();
         this.weekendEvent = new WeekendEvent();
         this.specialEvent = new SpecialEvent();
-        this.giveawayEvent = new GiveawayEvent();
+        this.giveawayEvent = new ChampaignGiveawayEvent();
     }
 
     public void inputOrderMenu(List<Food> orderMenus) {
@@ -54,11 +54,11 @@ public class Bill {
 
     private void calculatePriceAndEvent() {
         totalRegularPrice.calculate(orderMenu);
-        totalBenefitPrice.calculate(getTotalBenefitPrice());
-        badge = badge.calculate(totalBenefitPrice.get());
+        /*totalBenefitPrice.calculate(getTotalBenefitPrice());
+        badge = badge.calculate(totalBenefitPrice.get());*/
     }
 
-    private int getTotalBenefitPrice() {
+    /*private int getTotalBenefitPrice() {
         int benefitPrice = 0;
         if (isEvent()) {
             benefitPrice = calculateEvent(benefitPrice);
@@ -128,5 +128,5 @@ public class Bill {
         benefitDetails.put(giveawayEvent.getName(), giveawayEvent.getBenefit());
 
         return benefitPrice;
-    }
+    }*/
 }

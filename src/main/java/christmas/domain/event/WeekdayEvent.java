@@ -1,5 +1,7 @@
 package christmas.domain.event;
 
+import christmas.domain.dto.EventDto;
+import christmas.domain.event.category.WeekEvent;
 import christmas.domain.food.Dessert;
 import christmas.domain.food.Food;
 
@@ -10,7 +12,13 @@ public class WeekdayEvent implements WeekEvent {
     private static final String NAME = "평일 할인";
     private int benefit;
 
-    public int calculate(Map<Food, Integer> orderMenu) {
+    @Override
+    public int calculate(EventDto eventDto) {
+        if (!isEvent(eventDto)) {
+            return benefit = 0;
+        }
+
+        Map<Food, Integer> orderMenu = eventDto.getOrderMenu();
         benefit = 0;
         Set<Food> foods = orderMenu.keySet();
         for (Food food : foods) {
@@ -22,7 +30,10 @@ public class WeekdayEvent implements WeekEvent {
         return benefit;
     }
 
-    public boolean isEvent(int reservationDate, Map<Food, Integer> orderMenu) {
+    @Override
+    public boolean isEvent(EventDto eventDto) {
+        int reservationDate = eventDto.getReservationDate();
+        Map<Food, Integer> orderMenu = eventDto.getOrderMenu();
         Set<Food> foods = orderMenu.keySet();
         long desertCount = foods.stream().filter(food -> food instanceof Dessert).count();
 
@@ -31,7 +42,7 @@ public class WeekdayEvent implements WeekEvent {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 
     @Override
