@@ -20,6 +20,7 @@ public enum Badge {
     }
 
     public Badge calculate(int totalBenefitPrice) {
+        totalBenefitPrice = Math.abs(totalBenefitPrice);
         if (FIVE_THOUSAND <= totalBenefitPrice && totalBenefitPrice < TEN_THOUSAND) {
             return STAR;
         }
