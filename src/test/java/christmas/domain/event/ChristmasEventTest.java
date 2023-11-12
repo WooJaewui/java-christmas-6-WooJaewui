@@ -1,5 +1,6 @@
 package christmas.domain.event;
 
+import christmas.domain.dto.EventDto;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,7 +11,9 @@ class ChristmasEventTest {
         ChristmasEvent christmasEvent = new ChristmasEvent();
 
         int expectedDiscount = -3400;
-        assertThat(christmasEvent.calculate(25)).isEqualTo(expectedDiscount);
+        EventDto eventDto = new EventDto(25, 0, null);
+
+        assertThat(christmasEvent.calculate(eventDto)).isEqualTo(expectedDiscount);
         assertThat(christmasEvent.getBenefit()).isEqualTo(expectedDiscount);
     }
 
@@ -19,7 +22,9 @@ class ChristmasEventTest {
         ChristmasEvent christmasEvent = new ChristmasEvent();
 
         int expectedDiscount = -1000;
-        assertThat(christmasEvent.calculate(1)).isEqualTo(expectedDiscount);
+        EventDto eventDto = new EventDto(1, 0, null);
+
+        assertThat(christmasEvent.calculate(eventDto)).isEqualTo(expectedDiscount);
         assertThat(christmasEvent.getBenefit()).isEqualTo(expectedDiscount);
     }
 
@@ -28,7 +33,9 @@ class ChristmasEventTest {
         ChristmasEvent christmasEvent = new ChristmasEvent();
 
         int expectedDiscount = -2600;
-        assertThat(christmasEvent.calculate(17)).isEqualTo(expectedDiscount);
+        EventDto eventDto = new EventDto(17, 0, null);
+
+        assertThat(christmasEvent.calculate(eventDto)).isEqualTo(expectedDiscount);
         assertThat(christmasEvent.getBenefit()).isEqualTo(expectedDiscount);
     }
 }

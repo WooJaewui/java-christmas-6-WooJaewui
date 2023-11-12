@@ -1,8 +1,11 @@
 package christmas.domain.event;
 
+import christmas.domain.dto.EventDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.*;
 
 class SpecialEventTest {
     @ParameterizedTest
@@ -11,11 +14,11 @@ class SpecialEventTest {
         SpecialEvent specialDiscount = new SpecialEvent();
 
         int expectedPrice = 0;
-        if (specialDiscount.isEvent(reservationDate)) {
-            Assertions.assertThat(specialDiscount.calculate()).isEqualTo(expectedPrice);
-        }
+        EventDto eventDto = new EventDto(reservationDate, 0, null);
 
-        Assertions.assertThat(specialDiscount.getBenefit()).isEqualTo(expectedPrice);
+        assertThat(specialDiscount.isEvent(eventDto)).isFalse();
+        assertThat(specialDiscount.calculate(eventDto)).isEqualTo(expectedPrice);
+        assertThat(specialDiscount.getBenefit()).isEqualTo(expectedPrice);
     }
 
     @ParameterizedTest
@@ -24,10 +27,10 @@ class SpecialEventTest {
         SpecialEvent specialDiscount = new SpecialEvent();
 
         int expectedPrice = -1000;
-        if (specialDiscount.isEvent(reservationDate)) {
-            Assertions.assertThat(specialDiscount.calculate()).isEqualTo(expectedPrice);
-        }
+        EventDto eventDto = new EventDto(reservationDate, 0, null);
 
-        Assertions.assertThat(specialDiscount.getBenefit()).isEqualTo(expectedPrice);
+        assertThat(specialDiscount.isEvent(eventDto)).isTrue();
+        assertThat(specialDiscount.calculate(eventDto)).isEqualTo(expectedPrice);
+        assertThat(specialDiscount.getBenefit()).isEqualTo(expectedPrice);
     }
 }
