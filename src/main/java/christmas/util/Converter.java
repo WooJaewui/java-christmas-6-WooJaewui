@@ -26,7 +26,6 @@ public class Converter {
             String[] menuCount = menuAndCount.split("-");
             Food food = convertStringToFood(menuCount[0]);
             int count = Integer.parseInt(menuCount[1]);
-
             if (orderMenus.get(food) != null) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
