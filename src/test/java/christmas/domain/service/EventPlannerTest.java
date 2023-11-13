@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import static christmas.domain.food.Appetizer.MUSHROOM_SOUP;
@@ -30,13 +29,12 @@ class EventPlannerTest {
     void 주문내역_테스트() {
         EventPlanner bill = new EventPlanner(10);
 
-        List<Food> orderMenu = Arrays.asList(
-                CHOCO_CAKE, CHOCO_CAKE, CHOCO_CAKE,
-                BARBECUE_RIBS,
-                RED_WINE,
-                MUSHROOM_SOUP,
-                BARBECUE_RIBS
-        );
+        Map<Food, Integer> orderMenu = new HashMap<>();
+        orderMenu.put(CHOCO_CAKE, 3);
+        orderMenu.put(BARBECUE_RIBS,2);
+        orderMenu.put(RED_WINE, 1);
+        orderMenu.put(MUSHROOM_SOUP, 1);
+
         bill.inputOrderMenu(orderMenu);
 
         Map<Food, Integer> expectedOrderMenu = bill.getOrderMenu();
@@ -51,13 +49,12 @@ class EventPlannerTest {
     void 할인전_총주문금액_테스트() {
         EventPlanner bill = new EventPlanner(10);
 
-        List<Food> orderMenu = Arrays.asList(
-                CHOCO_CAKE, CHOCO_CAKE, CHOCO_CAKE,
-                BARBECUE_RIBS,
-                RED_WINE,
-                MUSHROOM_SOUP,
-                BARBECUE_RIBS
-        );
+        Map<Food, Integer> orderMenu = new HashMap<>();
+        orderMenu.put(CHOCO_CAKE, 3);
+        orderMenu.put(BARBECUE_RIBS,2);
+        orderMenu.put(RED_WINE, 1);
+        orderMenu.put(MUSHROOM_SOUP, 1);
+
         bill.inputOrderMenu(orderMenu);
 
         int expectedTotalRegularPrice = 219000;

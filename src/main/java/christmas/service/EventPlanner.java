@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class EventPlanner {
     private final int reservationDate;
-    private final Map<Food, Integer> orderMenu = new HashMap<>();
+    private Map<Food, Integer> orderMenu = new HashMap<>();
     private final TotalRegularPrice totalRegularPrice;
     private final Events events;
 
@@ -22,20 +22,8 @@ public class EventPlanner {
         this.events = new Events();
     }
 
-    public void inputOrderMenu(List<Food> orderMenus) {
-        if (validate(orderMenus)) {
-            return;
-        }
-
-        for (Food menu : orderMenus) {
-            int count = 1;
-            if (orderMenu.get(menu) != null) {
-                count = orderMenu.get(menu) + 1;
-            }
-
-            orderMenu.put(menu, count);
-        }
-
+    public void inputOrderMenu(Map<Food, Integer> orderMenu) {
+        this.orderMenu = new HashMap<>(orderMenu);
         totalRegularPrice.calculate(orderMenu);
         events.calculateEvent(new EventDto(reservationDate, totalRegularPrice.get(), orderMenu));
     }
