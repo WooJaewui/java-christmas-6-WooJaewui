@@ -43,9 +43,9 @@ public class InputView {
         private static boolean isNotInteger(String input) {
             try {
                 Integer.parseInt(input);
-                return true;
-            } catch (NumberFormatException e) {
                 return false;
+            } catch (NumberFormatException e) {
+                return true;
             }
         }
 
