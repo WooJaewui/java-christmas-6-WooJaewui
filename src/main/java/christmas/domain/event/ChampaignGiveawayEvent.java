@@ -46,4 +46,9 @@ public class ChampaignGiveawayEvent implements GiveawayEvent {
     public int getCount() {
         return count;
     }
+
+    @Override
+    public String getGiveawayItemName() {
+        return EVENT_PRIZES.getName();
+    }
 }
