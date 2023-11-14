@@ -31,10 +31,6 @@ public class EventPlanner {
         events.calculateEvent(new EventDto(reservationDate, totalRegularPrice.get(), orderMenu));
     }
 
-    private boolean validate(List<Food> orderMenus) {
-        return orderMenus.stream().allMatch(food -> food instanceof Drink);
-    }
-
     public int getReservationDate() {
         return reservationDate;
     }

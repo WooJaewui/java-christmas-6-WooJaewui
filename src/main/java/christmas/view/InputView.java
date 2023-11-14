@@ -1,11 +1,14 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.domain.food.Drink;
 import christmas.domain.food.Food;
 import christmas.util.FoodConverter;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Convert;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class InputView {
     public static int readReservationDate() {
@@ -37,6 +40,7 @@ public class InputView {
         InputValidation.checkOrderMenuCountConvertNumber(menuCounts);
         InputValidation.checkOrderMenuCountMinRange(menuCounts);
         InputValidation.checkOrderMenuCountMaxRange(menuCounts);
+        InputValidation.checkAllMenuDrink(input);
     }
 
     private static class InputValidation {
@@ -96,6 +100,14 @@ public class InputView {
             }
 
             if (menuCount > 20) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            }
+        }
+
+        private static void checkAllMenuDrink(String input) {
+            Map<Food, Integer> orderMenus = FoodConverter.convertStringToOrderMenus(input);
+            Set<Food> foods = orderMenus.keySet();
+            if (foods.stream().allMatch(food -> food instanceof Drink)) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
