@@ -1,6 +1,10 @@
 package christmas.domain.service;
 
 import christmas.domain.event.Badge;
+import christmas.domain.event.ChristmasEvent;
+import christmas.domain.event.SpecialEvent;
+import christmas.domain.event.WeekdayEvent;
+import christmas.domain.event.category.Event;
 import christmas.domain.food.Food;
 import christmas.service.EventPlanner;
 import org.junit.jupiter.api.Test;
@@ -8,10 +12,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static christmas.domain.event.Badge.*;
-import static christmas.domain.food.Appetizer.MUSHROOM_SOUP;
+import static christmas.domain.food.Appetizer.*;
 import static christmas.domain.food.Dessert.CHOCO_CAKE;
 import static christmas.domain.food.Drink.RED_WINE;
 import static christmas.domain.food.Drink.ZERO_COLA;
@@ -88,5 +93,59 @@ class EventPlannerTest {
         eventPlanner.inputOrderMenu(orderMenu);
 
         assertThat(eventPlanner.getBadge()).isEqualTo(STAR);
+    }
+
+    @Test
+    void 할인내역_테스트1() {
+        EventPlanner eventPlanner = new EventPlanner(3);
+
+        Map<Food, Integer> orderMenu = new HashMap<>();
+        orderMenu.put(CAESAR_SALAD, 1);
+
+        eventPlanner.inputOrderMenu(orderMenu);
+        List<Event> events = eventPlanner.getEvents();
+
+        assertThat(events.isEmpty()).isTrue();
+    }
+
+    @Test
+    void 할인내역_테스트2() {
+        EventPlanner eventPlanner = new EventPlanner(25);
+
+        Map<Food, Integer> orderMenu = new HashMap<>();
+        orderMenu.put(MUSHROOM_SOUP, 3);
+
+        eventPlanner.inputOrderMenu(orderMenu);
+        List<Event> events = eventPlanner.getEvents();
+
+        assertThat(events.get(0).getName()).isEqualTo(new ChristmasEvent().getName());
+        assertThat(events.get(1).getName()).isEqualTo(new SpecialEvent().getName());
+    }
+
+    @Test
+    void 결제금액_테스트1() {
+        EventPlanner eventPlanner = new EventPlanner(25);
+
+        Map<Food, Integer> orderMenu = new HashMap<>();
+        orderMenu.put(MUSHROOM_SOUP, 3);
+
+        eventPlanner.inputOrderMenu(orderMenu);
+
+        assertThat(eventPlanner.getPaymentPrice()).isEqualTo(13600);
+    }
+
+    @Test
+    void 결제금액_테스트2() {
+        EventPlanner eventPlanner = new EventPlanner(25);
+
+        Map<Food, Integer> orderMenu = new HashMap<>();
+        orderMenu.put(TAPAS, 2);
+        orderMenu.put(BARBECUE_RIBS, 2);
+        orderMenu.put(CHOCO_CAKE, 2);
+        orderMenu.put(RED_WINE, 1);
+
+        eventPlanner.inputOrderMenu(orderMenu);
+
+        assertThat(eventPlanner.getPaymentPrice()).isEqualTo(175554);
     }
 }
