@@ -35,6 +35,7 @@ public class InputView {
     }
 
     private static void checkOrderMenu(String input) {
+        InputValidation.checkDoubleComma(input);
         List<String> menuCounts = FoodConverter.convertStringToMenuCounts(input);
         try {
             InputValidation.checkOrderMenuInMyMenu(menuCounts);
@@ -68,6 +69,12 @@ public class InputView {
             int reservationDate = Integer.parseInt(input);
             if (1 > reservationDate || reservationDate > 31) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            }
+        }
+
+        private static void checkDoubleComma(String input) {
+            if (input.contains(",,")) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
 
