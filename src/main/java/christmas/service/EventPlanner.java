@@ -3,6 +3,7 @@ package christmas.service;
 import christmas.domain.dto.EventDto;
 import christmas.domain.event.Badge;
 import christmas.domain.event.Events;
+import christmas.domain.event.category.Event;
 import christmas.domain.event.category.GiveawayEvent;
 import christmas.domain.food.Drink;
 import christmas.domain.food.Food;
@@ -54,7 +55,7 @@ public class EventPlanner {
         return events.getBadge();
     }
 
-    public Events getEvents() {
-        return events;
+    public List<Event> getEvents() {
+        return events.getEvents();
     }
 }

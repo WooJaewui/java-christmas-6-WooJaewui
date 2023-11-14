@@ -2,6 +2,7 @@ package christmas.domain.event;
 
 import christmas.domain.dto.EventDto;
 import christmas.domain.event.category.Event;
+import christmas.domain.event.category.GiveawayEvent;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -54,11 +55,22 @@ public class Events {
         return events.stream().mapToInt(Event::getBenefit).sum();
     }
 
+    public List<GiveawayEvent> getGiveawayEvents() {
+        return events.stream()
+                .filter(event -> event instanceof GiveawayEvent)
+                .map(event -> (GiveawayEvent)event)
+                .toList();
+    }
+
     public Badge getBadge() {
         return badge;
     }
 
     public Map<String, Integer> getBenefitDetails() {
         return new HashMap<>(benefitDetails);
+    }
+
+    public List<Event> getEvents() {
+        return events;
     }
 }
