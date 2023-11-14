@@ -62,4 +62,8 @@ public class EventPlanner {
     public int getTotalBenefitPrice() {
         return events.getTotalBenefitPrice();
     }
+
+    public int getPaymentPrice() {
+        return totalRegularPrice.get() + events.getTotalBenefitPrice();
+    }
 }
