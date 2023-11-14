@@ -1,8 +1,6 @@
 package christmas.util;
 
-import christmas.domain.food.Drink;
 import christmas.domain.food.Food;
-import christmas.domain.food.Main;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,11 +11,11 @@ import static christmas.domain.food.Dessert.CHOCO_CAKE;
 import static christmas.domain.food.Dessert.ICE_CREAM;
 import static christmas.domain.food.Drink.*;
 import static christmas.domain.food.Main.*;
-import static christmas.util.Converter.*;
+import static christmas.util.FoodConverter.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class ConverterTest {
+class FoodConverterTest {
     @Test
     void 주문메뉴_맵_변경_테스트1() {
         String input = "양송이수프-2,아이스크림-5";

@@ -11,7 +11,7 @@ import static christmas.domain.food.Drink.*;
 import static christmas.domain.food.Main.*;
 import static christmas.domain.food.Main.CHRISTMAS_PASTA;
 
-public class Converter {
+public class FoodConverter {
     private static final List<Food> foods = Arrays.asList(
             MUSHROOM_SOUP, TAPAS, CAESAR_SALAD,
             T_BONE_STEAK, BARBECUE_RIBS, SEAFOOD_PASTA, CHRISTMAS_PASTA,

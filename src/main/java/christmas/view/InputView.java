@@ -2,7 +2,7 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.food.Food;
-import christmas.util.Converter;
+import christmas.util.FoodConverter;
 
 import java.util.List;
 import java.util.Map;
@@ -28,11 +28,11 @@ public class InputView {
 
         checkOrderMenu(input);
 
-        return Converter.convertStringToOrderMenus(input);
+        return FoodConverter.convertStringToOrderMenus(input);
     }
 
     private static void checkOrderMenu(String input) {
-        List<String> menuCounts = Converter.convertStringToMenuCounts(input);
+        List<String> menuCounts = FoodConverter.convertStringToMenuCounts(input);
         InputValidation.checkOrderMenuInMyMenu(menuCounts);
         InputValidation.checkOrderMenuCountConvertNumber(menuCounts);
         InputValidation.checkOrderMenuCountMinRange(menuCounts);
@@ -65,7 +65,7 @@ public class InputView {
         private static void checkOrderMenuInMyMenu(List<String> orderMenus) {
             for (String orderMenu : orderMenus) {
                 String[] menuAndCount = orderMenu.split("-");
-                Converter.convertStringToFood(menuAndCount[0]);
+                FoodConverter.convertStringToFood(menuAndCount[0]);
             }
         }
 
