@@ -60,6 +60,6 @@ public class EventPlanner {
     }
 
     public int getPaymentPrice() {
-        return totalRegularPrice.get() + events.getTotalBenefitPrice();
+        return totalRegularPrice.get() + events.getDiscountPrice();
     }
 }

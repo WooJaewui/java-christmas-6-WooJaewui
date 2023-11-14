@@ -1,12 +1,8 @@
 package christmas.controller;
 
-import christmas.domain.event.Badge;
-import christmas.domain.event.category.Event;
 import christmas.service.EventPlanner;
 import christmas.view.InputView;
 import christmas.view.OutputView;
-
-import java.util.List;
 
 import static christmas.util.MessageConverter.*;
 

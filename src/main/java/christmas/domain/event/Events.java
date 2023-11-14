@@ -55,6 +55,13 @@ public class Events {
         return events.stream().mapToInt(Event::getBenefit).sum();
     }
 
+    public int getDiscountPrice() {
+        return events.stream()
+                .filter(event -> !(event instanceof GiveawayEvent))
+                .mapToInt(Event::getBenefit)
+                .sum();
+    }
+
     public List<GiveawayEvent> getGiveawayEvents() {
         return events.stream()
                 .filter(event -> event instanceof GiveawayEvent)
