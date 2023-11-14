@@ -58,6 +58,7 @@ public class Events {
     public List<GiveawayEvent> getGiveawayEvents() {
         return events.stream()
                 .filter(event -> event instanceof GiveawayEvent)
+                .filter(event -> ((GiveawayEvent) event).getCount() > 0)
                 .map(event -> (GiveawayEvent)event)
                 .toList();
     }
@@ -71,6 +72,6 @@ public class Events {
     }
 
     public List<Event> getEvents() {
-        return events;
+        return events.stream().filter(event -> event.getBenefit() != 0).toList();
     }
 }
