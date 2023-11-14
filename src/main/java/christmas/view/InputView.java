@@ -36,10 +36,15 @@ public class InputView {
 
     private static void checkOrderMenu(String input) {
         List<String> menuCounts = FoodConverter.convertStringToMenuCounts(input);
-        InputValidation.checkOrderMenuInMyMenu(menuCounts);
-        InputValidation.checkOrderMenuCountConvertNumber(menuCounts);
-        InputValidation.checkOrderMenuCountMinRange(menuCounts);
-        InputValidation.checkOrderMenuCountMaxRange(menuCounts);
+        try {
+            InputValidation.checkOrderMenuInMyMenu(menuCounts);
+            InputValidation.checkOrderMenuCountConvertNumber(menuCounts);
+            InputValidation.checkOrderMenuCountMinRange(menuCounts);
+            InputValidation.checkOrderMenuCountMaxRange(menuCounts);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.", e);
+        }
+
         InputValidation.checkAllMenuDrink(input);
     }
 
