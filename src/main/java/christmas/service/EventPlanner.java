@@ -58,4 +58,8 @@ public class EventPlanner {
     public List<Event> getEvents() {
         return events.getEvents();
     }
+
+    public int getTotalBenefitPrice() {
+        return events.getTotalBenefitPrice();
+    }
 }
