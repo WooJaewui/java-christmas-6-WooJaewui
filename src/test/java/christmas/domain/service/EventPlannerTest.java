@@ -1,5 +1,6 @@
 package christmas.domain.service;
 
+import christmas.domain.event.Badge;
 import christmas.domain.food.Food;
 import christmas.service.EventPlanner;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.HashMap;
 import java.util.Map;
 
+import static christmas.domain.event.Badge.*;
 import static christmas.domain.food.Appetizer.MUSHROOM_SOUP;
 import static christmas.domain.food.Dessert.CHOCO_CAKE;
 import static christmas.domain.food.Drink.RED_WINE;
@@ -59,5 +61,32 @@ class EventPlannerTest {
 
         int expectedTotalRegularPrice = 219000;
         assertThat(bill.getTotalRegularPrice()).isEqualTo(expectedTotalRegularPrice);
+    }
+
+    @Test
+    void 할인후_배지_테스트1() {
+        EventPlanner eventPlanner = new EventPlanner(10);
+
+        Map<Food, Integer> orderMenu = new HashMap<>();
+        orderMenu.put(CHOCO_CAKE, 3);
+        orderMenu.put(BARBECUE_RIBS,2);
+        orderMenu.put(RED_WINE, 1);
+        orderMenu.put(MUSHROOM_SOUP, 1);
+
+        eventPlanner.inputOrderMenu(orderMenu);
+
+        assertThat(eventPlanner.getBadge()).isEqualTo(SANTA);
+    }
+
+    @Test
+    void 할인후_배지_테스트2() {
+        EventPlanner eventPlanner = new EventPlanner(3);
+
+        Map<Food, Integer> orderMenu = new HashMap<>();
+        orderMenu.put(CHOCO_CAKE, 3);
+
+        eventPlanner.inputOrderMenu(orderMenu);
+
+        assertThat(eventPlanner.getBadge()).isEqualTo(STAR);
     }
 }
