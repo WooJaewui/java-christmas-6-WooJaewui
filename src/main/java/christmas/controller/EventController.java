@@ -2,14 +2,13 @@ package christmas.controller;
 
 import christmas.domain.event.Badge;
 import christmas.domain.event.category.Event;
-import christmas.domain.event.category.GiveawayEvent;
-import christmas.domain.food.Food;
 import christmas.service.EventPlanner;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
 import java.util.List;
-import java.util.Map;
+
+import static christmas.util.MessageConverter.*;
 
 public class EventController {
     private EventPlanner eventPlanner;
@@ -47,10 +46,10 @@ public class EventController {
 
     private void printEventBenefitPreview() {
         printPreviewMessage();
-        printOrderMenu();
+        printOrderMenus();
         printTotalRegularPrice();
         printGiveaway();
-        printBenefitList();
+        printBenefits();
         printTotalBenefitPrice();
         printPaymentPrice();
         printBadge();
@@ -60,113 +59,38 @@ public class EventController {
         OutputView.printEventPreview();
     }
 
-    private void printOrderMenu() {
-        Map<Food, Integer> orderMenu = eventPlanner.getOrderMenu();
-        StringBuilder sb = new StringBuilder();
-        for (Food food : orderMenu.keySet()) {
-            sb.append(food.getName()).append(" ").append(orderMenu.get(food)).append("개").append("\n");
-        }
-
-        OutputView.printMenu(sb.toString());
+    private void printOrderMenus() {
+        String menuAndCountsMessage = convertMenuAndCountsMessage(eventPlanner.getOrderMenu());
+        OutputView.printMenus(menuAndCountsMessage);
     }
 
     private void printTotalRegularPrice() {
-        String totalRegularPrice = String.valueOf(eventPlanner.getTotalRegularPrice());
-        StringBuilder stringBuilder = new StringBuilder(totalRegularPrice);
-        String reverse = stringBuilder.reverse().toString();
-        stringBuilder = new StringBuilder();
-        for (int i=0; i<reverse.length(); i++) {
-            if (i != 0 && i % 3 == 0) {
-                stringBuilder.insert(0, ",");
-            }
-
-            stringBuilder.insert(0, reverse.charAt(i));
-        }
-        stringBuilder.append("원\n");
-
-        OutputView.printTotalRegularPrice(stringBuilder.toString());
+        String totalRegularPriceMessage = convertPriceMessage(eventPlanner.getTotalRegularPrice());
+        OutputView.printTotalRegularPrice(totalRegularPriceMessage);
     }
 
     private void printGiveaway() {
-        List<GiveawayEvent> giveawayEvents = eventPlanner.getGiveawayEvents();
-        StringBuilder sb = new StringBuilder();
-        for (GiveawayEvent giveawayEvent : giveawayEvents) {
-            sb.append(giveawayEvent.getGiveawayItemName())
-                    .append(" ")
-                    .append(giveawayEvent.getCount())
-                    .append("개")
-                    .append("\n");
-        }
-
-        if (giveawayEvents.isEmpty()) {
-            sb.append("없음").append("\n");
-        }
-
-        OutputView.printGiveawayEvent(sb.toString());
+        String giveawaysMessage = convertGiveawaysMessage(eventPlanner.getGiveawayEvents());
+        OutputView.printGiveawayEvent(giveawaysMessage);
     }
 
-    private void printBenefitList() {
-        List<Event> events = eventPlanner.getEvents();
-        StringBuilder sb = new StringBuilder();
-        for (Event event : events) {
-            sb.append(event.getName()).append(": ").append(event.getBenefit()).append("원").append("\n");
-        }
-
-        if (events.isEmpty()) {
-            sb.append("없음").append("\n");
-        }
-
-        OutputView.printBenefitList(sb.toString());
+    private void printBenefits() {
+        String benefitsMessage = convertBenefits(eventPlanner.getEvents());
+        OutputView.printBenefits(benefitsMessage);
     }
 
     private void printTotalBenefitPrice() {
-        String totalRegularPrice = String.valueOf(eventPlanner.getTotalBenefitPrice());
-        StringBuilder stringBuilder = new StringBuilder(totalRegularPrice);
-        String reverse = stringBuilder.reverse().toString();
-        stringBuilder = new StringBuilder();
-        for (int i=0; i<reverse.length(); i++) {
-            if (reverse.charAt(i) == '-') {
-                stringBuilder.insert(0, reverse.charAt(i));
-                break;
-            }
-
-            if (i != 0 && i % 3 == 0) {
-                stringBuilder.insert(0, ",");
-            }
-
-            stringBuilder.insert(0, reverse.charAt(i));
-        }
-        stringBuilder.append("원\n");
-
-        OutputView.printBenefitPrice(stringBuilder.toString());
+        String benefitPriceMessage = convertPriceMessage(eventPlanner.getTotalBenefitPrice());
+        OutputView.printBenefitPrice(benefitPriceMessage);
     }
 
     private void printPaymentPrice() {
-        String paymentPrice = String.valueOf(eventPlanner.getPaymentPrice());
-        StringBuilder stringBuilder = new StringBuilder(paymentPrice);
-        String reverse = stringBuilder.reverse().toString();
-        stringBuilder = new StringBuilder();
-        for (int i=0; i<reverse.length(); i++) {
-            if (reverse.charAt(i) == '-') {
-                stringBuilder.insert(0, reverse.charAt(i));
-                break;
-            }
-
-            if (i != 0 && i % 3 == 0) {
-                stringBuilder.insert(0, ",");
-            }
-
-            stringBuilder.insert(0, reverse.charAt(i));
-        }
-        stringBuilder.append("원\n");
-
-        OutputView.printPaymentPrice(stringBuilder.toString());
+        String paymentPriceMessage = convertPriceMessage(eventPlanner.getPaymentPrice());
+        OutputView.printPaymentPrice(paymentPriceMessage);
     }
 
     private void printBadge() {
-        Badge badge = eventPlanner.getBadge();
-        String badgeMessage = badge.getName();
-
-        OutputView.printEventBadge(badgeMessage);
+        String badgeNameMessage = convertBadgeName(eventPlanner.getBadge());
+        OutputView.printEventBadge(badgeNameMessage);
     }
 }
