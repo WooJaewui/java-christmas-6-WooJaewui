@@ -27,7 +27,7 @@ public class EventController {
         try {
             eventPlanner = new EventPlanner(InputView.readReservationDate());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + "\n");
+            System.out.println(e.getMessage());
             setReservationDate();
         }
     }
@@ -36,7 +36,7 @@ public class EventController {
         try {
             eventPlanner.inputOrderMenu(InputView.readOrderMenu());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + "\n");
+            System.out.println(e.getMessage());
             orderMenu();
         }
     }
