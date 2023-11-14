@@ -1,6 +1,7 @@
 package christmas.service;
 
 import christmas.domain.dto.EventDto;
+import christmas.domain.event.Badge;
 import christmas.domain.event.Events;
 import christmas.domain.food.Drink;
 import christmas.domain.food.Food;
@@ -42,5 +43,9 @@ public class EventPlanner {
 
     public int getTotalRegularPrice() {
         return totalRegularPrice.get();
+    }
+
+    public Badge getBadge() {
+        return events.getBadge();
     }
 }
