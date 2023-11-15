@@ -14,7 +14,11 @@ public class MessageConverter {
     public static String convertMenuAndCountsMessage(Map<Food, Integer> orderMenu) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Food food : orderMenu.keySet()) {
-            stringBuilder.append(food.getName()).append(" ").append(orderMenu.get(food)).append("개").append(LINE_SEPARATOR);
+            stringBuilder.append(food.getName())
+                    .append(" ")
+                    .append(orderMenu.get(food))
+                    .append("개")
+                    .append(LINE_SEPARATOR);
         }
 
         return stringBuilder.toString();
