@@ -1,4 +1,4 @@
-package christmas.domain.service;
+package christmas.service;
 
 import christmas.domain.event.ChristmasEvent;
 import christmas.domain.event.SpecialEvent;
