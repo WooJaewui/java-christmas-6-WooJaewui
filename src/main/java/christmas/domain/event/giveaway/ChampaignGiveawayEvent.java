@@ -1,7 +1,7 @@
-package christmas.domain.event;
+package christmas.domain.event.giveaway;
 
 import christmas.domain.dto.EventDto;
-import christmas.domain.event.category.GiveawayEvent;
+import christmas.domain.event.giveaway.GiveawayEvent;
 import christmas.domain.food.Drink;
 
 import static christmas.domain.food.Drink.CHAMPAGNE;

@@ -1,15 +1,12 @@
 package christmas.util;
 
 import christmas.domain.dto.EventDto;
-import christmas.domain.event.Badge;
-import christmas.domain.event.ChampaignGiveawayEvent;
+import christmas.domain.event.giveaway.ChampaignGiveawayEvent;
 import christmas.domain.event.SpecialEvent;
-import christmas.domain.event.category.Event;
-import christmas.domain.event.category.GiveawayEvent;
+import christmas.domain.event.Event;
+import christmas.domain.event.giveaway.GiveawayEvent;
 import christmas.domain.food.Food;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.HashMap;

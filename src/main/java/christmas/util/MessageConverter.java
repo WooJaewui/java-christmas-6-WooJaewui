@@ -1,8 +1,8 @@
 package christmas.util;
 
 import christmas.domain.event.Badge;
-import christmas.domain.event.category.Event;
-import christmas.domain.event.category.GiveawayEvent;
+import christmas.domain.event.Event;
+import christmas.domain.event.giveaway.GiveawayEvent;
 import christmas.domain.food.Food;
 
 import java.util.List;

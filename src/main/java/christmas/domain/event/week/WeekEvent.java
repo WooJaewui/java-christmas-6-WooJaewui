@@ -1,6 +1,8 @@
-package christmas.domain.event.category;
+package christmas.domain.event.week;
 
-public interface WeekEvent extends Event{
+import christmas.domain.event.Event;
+
+public interface WeekEvent extends Event {
     int FRIDAY_MARK = 1;
     int SATURDAY_MARK = 2;
 

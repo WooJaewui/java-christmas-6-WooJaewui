@@ -1,6 +1,7 @@
-package christmas.domain.event;
+package christmas.domain.event.giveaway;
 
 import christmas.domain.dto.EventDto;
+import christmas.domain.event.giveaway.ChampaignGiveawayEvent;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,7 +1,6 @@
 package christmas.domain.event;
 
 import christmas.domain.dto.EventDto;
-import christmas.domain.event.category.Event;
 
 import java.util.Arrays;
 

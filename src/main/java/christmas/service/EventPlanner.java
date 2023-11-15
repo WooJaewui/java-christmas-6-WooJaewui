@@ -3,8 +3,8 @@ package christmas.service;
 import christmas.domain.dto.EventDto;
 import christmas.domain.event.Badge;
 import christmas.domain.event.Events;
-import christmas.domain.event.category.Event;
-import christmas.domain.event.category.GiveawayEvent;
+import christmas.domain.event.Event;
+import christmas.domain.event.giveaway.GiveawayEvent;
 import christmas.domain.food.Food;
 import christmas.domain.price.TotalRegularPrice;
 

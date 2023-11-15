@@ -1,7 +1,6 @@
-package christmas.domain.event;
+package christmas.domain.event.week;
 
 import christmas.domain.dto.EventDto;
-import christmas.domain.event.category.WeekEvent;
 import christmas.domain.food.Dessert;
 import christmas.domain.food.Food;
 

@@ -1,6 +1,7 @@
-package christmas.domain.event;
+package christmas.domain.event.week;
 
 import christmas.domain.dto.EventDto;
+import christmas.domain.event.week.WeekendEvent;
 import christmas.domain.food.*;
 import org.junit.jupiter.api.Test;
 

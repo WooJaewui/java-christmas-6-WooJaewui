@@ -2,9 +2,8 @@ package christmas.service;
 
 import christmas.domain.event.ChristmasEvent;
 import christmas.domain.event.SpecialEvent;
-import christmas.domain.event.category.Event;
+import christmas.domain.event.Event;
 import christmas.domain.food.Food;
-import christmas.service.EventPlanner;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
