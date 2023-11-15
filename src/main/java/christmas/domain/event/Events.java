@@ -15,6 +15,7 @@ import static christmas.domain.event.Badge.NONE;
 
 public class Events {
     private static final int EVENT_APPLIED_PRICE = 10000;
+    private static final int ZERO = 0;
     private final List<Event> events;
     private Badge badge;
     private final Map<String, Integer> benefitDetails = new HashMap<>();
@@ -67,7 +68,7 @@ public class Events {
     public List<GiveawayEvent> getGiveawayEvents() {
         return events.stream()
                 .filter(event -> event instanceof GiveawayEvent)
-                .filter(event -> ((GiveawayEvent) event).getCount() > 0)
+                .filter(event -> ((GiveawayEvent) event).getCount() > ZERO)
                 .map(event -> (GiveawayEvent)event)
                 .toList();
     }
@@ -81,6 +82,6 @@ public class Events {
     }
 
     public List<Event> getEvents() {
-        return events.stream().filter(event -> event.getBenefit() != 0).toList();
+        return events.stream().filter(event -> event.getBenefit() != ZERO).toList();
     }
 }

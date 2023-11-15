@@ -6,16 +6,19 @@ public class ChristmasEvent implements Event {
     private static final int MAX_DISCOUNT = -3400;
     private static final int CHRISTMAS_DAY = 25;
     private static final String NAME = "크리스마스 디데이 할인";
+    private static final int ZERO = 0;
+    private static final int HUNDRED = 100;
     private int benefit;
 
     @Override
     public int calculate(EventDto eventDto) {
+        benefit = ZERO;
         if (!isEvent(eventDto)) {
-            return benefit = 0;
+            return benefit;
         }
 
         int reservationDate = eventDto.getReservationDate();
-        benefit = MAX_DISCOUNT + (CHRISTMAS_DAY - reservationDate) * 100;
+        benefit = MAX_DISCOUNT + (CHRISTMAS_DAY - reservationDate) * HUNDRED;
         return benefit;
     }
 

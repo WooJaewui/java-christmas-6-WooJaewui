@@ -9,12 +9,14 @@ import java.util.Set;
 
 public class WeekendEvent implements WeekEvent {
     private static final String NAME = "주말 할인";
+    private static final int ZERO = 0;
     private int benefit;
 
     @Override
     public int calculate(EventDto eventDto) {
+        benefit = ZERO;
         if (!isEvent(eventDto)) {
-            return benefit = 0;
+            return benefit;
         }
 
         Map<Food, Integer> orderMenu = eventDto.getOrderMenu();
@@ -35,7 +37,7 @@ public class WeekendEvent implements WeekEvent {
         Set<Food> foods = orderMenu.keySet();
         long mainCount = foods.stream().filter(food -> food instanceof Main).count();
 
-        return isWeekend(reservationDate) && mainCount > 0;
+        return isWeekend(reservationDate) && mainCount > ZERO;
     }
 
     @Override

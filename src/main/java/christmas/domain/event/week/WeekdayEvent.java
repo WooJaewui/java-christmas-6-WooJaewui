@@ -9,16 +9,17 @@ import java.util.Set;
 
 public class WeekdayEvent implements WeekEvent {
     private static final String NAME = "평일 할인";
+    private static final int ZERO = 0;
     private int benefit;
 
     @Override
     public int calculate(EventDto eventDto) {
+        benefit = ZERO;
         if (!isEvent(eventDto)) {
-            return benefit = 0;
+            return benefit;
         }
 
         Map<Food, Integer> orderMenu = eventDto.getOrderMenu();
-        benefit = 0;
         Set<Food> foods = orderMenu.keySet();
         for (Food food : foods) {
             if (food instanceof Dessert) {
@@ -36,7 +37,7 @@ public class WeekdayEvent implements WeekEvent {
         Set<Food> foods = orderMenu.keySet();
         long desertCount = foods.stream().filter(food -> food instanceof Dessert).count();
 
-        return !isWeekend(reservationDate) && desertCount > 0;
+        return !isWeekend(reservationDate) && desertCount > ZERO;
     }
 
     @Override
